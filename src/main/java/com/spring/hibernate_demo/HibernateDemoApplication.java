@@ -26,7 +26,7 @@ public class HibernateDemoApplication {
 	@Bean 
 	CommandLineRunner commandLineRunner(StudentDao studentDao) {
 		return runner -> {
-			createStudent(studentDao);
+			// createStudent(studentDao);
 			// readStudent(studentDao);
 			// queryStudents(studentDao);
 			// queryStudentsLastName(studentDao);
@@ -91,6 +91,5 @@ public class HibernateDemoApplication {
 		int rowsDeleted = studentDao.deleteAll();
 		System.out.println("Number of rows: " + rowsDeleted);
 	}
-
 
 }
