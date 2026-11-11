@@ -55,7 +55,7 @@ public class Instructor {
     public Instructor() {
     }
 
-    /** Constructor to initialize an Instructor with first name, last name, and email. */
+    /** Initializes an Instructor with a name and email. */
     public Instructor(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;

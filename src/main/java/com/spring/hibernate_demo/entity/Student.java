@@ -49,7 +49,7 @@ public class Student {
     public Student() {
     }
 
-    /** Constructor to initialize a Student with first name, last name, and email. */
+    /** Initializes a Student with a name and email. */
     public Student(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;

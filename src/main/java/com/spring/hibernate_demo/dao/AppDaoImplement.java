@@ -11,26 +11,26 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 /**
- * Implementation of the AppDao interface using JPA EntityManager.
+ * Implements AppDao using JPA EntityManager.
  */
 @Repository
 public class AppDaoImplement implements AppDao {
 
     private final EntityManager em;
 
-    /** Constructor injection for EntityManager. */
+    /** Initializes the EntityManager. */
     public AppDaoImplement(EntityManager em) {
         this.em = em;
     }
 
-    /** Saves an Instructor entity and its details. */
+    /** Saves an Instructor and its details. */
     @Override
     @Transactional
     public void save(Instructor instructor) {
         em.persist(instructor);
     }
 
-    /** Retrieves an Instructor by ID. */
+    /** Finds an Instructor by ID. */
     @Override
     public Instructor findInstructorById(int theId) {
         return em.find(Instructor.class, theId);
@@ -44,7 +44,7 @@ public class AppDaoImplement implements AppDao {
         em.remove(ins);
     }
 
-    /** Deletes an InstructorDetail entity by ID without deleting the Instructor. */
+    /** Deletes InstructorDetails without deleting the Instructor. */
     @Override
     @Transactional
     public void deleteInstructorDetail(int theId) {
@@ -54,7 +54,7 @@ public class AppDaoImplement implements AppDao {
         em.remove(deets);
     }
 
-    /** Retrieves all Course entities with a specific Instructor ID. */
+    /** Finds all Courses belonging to an Instructor. */
     @Override
     public List<Course> findCoursesByInstructorId(int theId) {
         TypedQuery<Course> query = em.createQuery(
@@ -65,7 +65,7 @@ public class AppDaoImplement implements AppDao {
         return query.getResultList();
     }
 
-    /** Retrieves an Instructor and eagerly fetches associated Courses using a JOIN FETCH query. */
+    /** Finds an Instructor with its Courses and Details. */
     @Override
     public Instructor findInstructorByJoinFetch(int theId) {
         TypedQuery<Instructor> query = em.createQuery(
@@ -79,27 +79,27 @@ public class AppDaoImplement implements AppDao {
         return query.getSingleResult();
     }
 
-    /** Updates an existing Instructor record. */
+    /** Updates an Instructor. */
     @Override
     @Transactional
     public void update(Instructor in) {
         em.merge(in);
     }
 
-    /** Retrieves a Course entity by ID. */
+    /** Finds a Course by ID. */
     @Override
     public Course findCourseById(int theId) {
         return em.find(Course.class, theId);
     }
 
-    /** Updates an existing Course record. */
+    /** Updates a Course. */
     @Override
     @Transactional
     public void update(Course course) {
         em.merge(course);
     }
 
-    /** Deletes an Instructor by ID without deleting associated Course records. */
+    /** Deletes an Instructor without deleting its Courses. */
     @Override
     @Transactional
     public void deleteInstructorOnlyById(int theId) {
@@ -113,7 +113,7 @@ public class AppDaoImplement implements AppDao {
         em.remove(ins);
     }
 
-    /** Deletes a Course record by ID. */
+    /** Deletes a Course by ID. */
     @Override
     @Transactional
     public void deleteCourseById(int theId) {
@@ -121,14 +121,14 @@ public class AppDaoImplement implements AppDao {
         em.remove(course);
     }
 
-    /** Saves a Course entity. */
+    /** Saves a Course. */
     @Override
     @Transactional
     public void save(Course theCourse) {
         em.persist(theCourse);
     }
 
-    /** Retrieves a Course along with its associated Review records by Course ID. */
+    /** Finds a Course with its Reviews. */
     @Override
     public Course findCourseAndReviewsByCourseId(int theId) {
         TypedQuery<Course> query = em.createQuery(
@@ -141,7 +141,7 @@ public class AppDaoImplement implements AppDao {
         return query.getSingleResult();
     }
 
-    /** Retrieves a Course along with its enrolled Student records by Course ID. */
+    /** Finds a Course with its enrolled Students. */
     @Override
     public Course findCourseAndStudentByCourseId(int theId) {
         TypedQuery<Course> query = em.createQuery(
@@ -154,7 +154,7 @@ public class AppDaoImplement implements AppDao {
         return query.getSingleResult();
     }
 
-    /** Retrieves a Student along with registered Course records by Student ID. */
+    /** Finds a Student with their registered Courses. */
     @Override
     public Student findStudentAndCourseByStudentId(int theId) {
         TypedQuery<Student> query = em.createQuery(
@@ -167,14 +167,14 @@ public class AppDaoImplement implements AppDao {
         return query.getSingleResult();
     }
 
-    /** Updates an existing Student record. */
+    /** Updates a Student. */
     @Override
     @Transactional
     public void update(Student student) {
         em.merge(student);
     }
 
-    /** Deletes a Student record by ID. */
+    /** Deletes a Student by ID. */
     @Override
     @Transactional
     public void deleteStudentById(int theId) {

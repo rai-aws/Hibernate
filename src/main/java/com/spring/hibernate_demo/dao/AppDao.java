@@ -6,58 +6,58 @@ import com.spring.hibernate_demo.entity.Student;
 import java.util.List;
 
 /**
- * Provides database operations for Instructor, Course, and Student entities.
+ * Defines database operations for Instructor, Course, and Student.
  */
 public interface AppDao {
 
-    /** Saves an Instructor entity. */
+    /** Saves an Instructor. */
     void save(Instructor instructor);
 
-    /** Retrieves an Instructor by ID. */
+    /** Finds an Instructor by ID. */
     Instructor findInstructorById(int theId);
 
-    /** Deletes an Instructor and its associated details by ID. */
+    /** Deletes an Instructor and its details by ID. */
     void deleteInstructorById(int theId);
 
-    /** Deletes an InstructorDetail entity by ID without deleting the Instructor. */
+    /** Deletes InstructorDetails without deleting the Instructor. */
     void deleteInstructorDetail(int theId);
 
-    /** Retrieves all Course entities associated with a specific Instructor ID. */
+    /** Finds all Courses belonging to an Instructor. */
     List<Course> findCoursesByInstructorId(int theId);
 
-    /** Retrieves an Instructor and eagerly fetches associated Courses using a JOIN FETCH query. */
+    /** Finds an Instructor with its Courses and Details. */
     Instructor findInstructorByJoinFetch(int theId);
 
-    /** Updates an existing Instructor record. */
+    /** Updates an Instructor. */
     void update(Instructor in);
 
-    /** Retrieves a Course entity by primary key ID. */
+    /** Finds a Course by ID. */
     Course findCourseById(int theId);
 
-    /** Updates an existing Course record. */
+    /** Updates a Course. */
     void update(Course course);
 
-    /** Deletes an Instructor by ID without deleting associated Course records. */
+    /** Deletes an Instructor without deleting its Courses. */
     void deleteInstructorOnlyById(int theId);
 
-    /** Deletes a Course record by ID. */
+    /** Deletes a Course by ID. */
     void deleteCourseById(int theId);
 
-    /** Saves a Course entity. */
+    /** Saves a Course. */
     void save(Course theCourse);
 
-    /** Retrieves a Course along with its associated Review records by Course ID. */
+    /** Finds a Course with its Reviews. */
     Course findCourseAndReviewsByCourseId(int theId);
 
-    /** Retrieves a Course along with its enrolled Student records by Course ID. */
+    /** Finds a Course with its enrolled Students. */
     Course findCourseAndStudentByCourseId(int theId);
 
-    /** Retrieves a Student along with registered Course records by Student ID. */
+    /** Finds a Student with their registered Courses. */
     Student findStudentAndCourseByStudentId(int theId);
 
-    /** Updates an existing Student record. */
+    /** Updates a Student. */
     void update(Student student);
 
-    /** Deletes a Student record by ID. */
+    /** Deletes a Student by ID. */
     void deleteStudentById(int theId);
 }

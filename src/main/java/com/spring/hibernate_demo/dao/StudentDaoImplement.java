@@ -8,54 +8,59 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 /**
- * Implementation of the StudentDao interface using JPA EntityManager.
+ * Implements StudentDao using JPA EntityManager.
  */
 @Repository
 public class StudentDaoImplement implements StudentDao {
 
     private final EntityManager em;
 
-    /** Constructor injection for EntityManager. */
+    /** Initializes the EntityManager. */
     public StudentDaoImplement(EntityManager em) {
         this.em = em;
     }
 
-    /** Saves a new Student entity to the database. */
+    /** Saves a Student. */
     @Override
     @Transactional
     public void save(Student student) {
         em.persist(student);
     }
 
-    /** Retrieves a Student record by primary key ID. */
+    /** Finds a Student by ID. */
     @Override
     public Student findById(Integer id) {
         return em.find(Student.class, id);
     }
 
-    /** Retrieves all Student records from the database. */
+    /** Finds all Students. */
     @Override
     public List<Student> findAll() {
-        TypedQuery<Student> query = em.createQuery("FROM Student", Student.class);
+        TypedQuery<Student> query = em.createQuery
+                                    ("FROM Student", 
+                                    Student.class);
         return query.getResultList();
     }
 
-    /** Retrieves a list of Student records matching the given last name. */
+    /** Finds Students by last name. */
     @Override
     public List<Student> findByLastName(String lastname) {
-        TypedQuery<Student> query = em.createQuery("FROM Student WHERE lastName = :data", Student.class);
+        TypedQuery<Student> query = em.createQuery
+                                    ("FROM Student " 
+                                    + "WHERE lastName = :data", 
+                                    Student.class);
         query.setParameter("data", lastname);
         return query.getResultList();
     }
 
-    /** Updates an existing Student record. */
+    /** Updates a Student. */
     @Override
     @Transactional
     public void update(Student theStudent) {
         em.merge(theStudent);
     }
 
-    /** Deletes a Student record by primary key ID. */
+    /** Deletes a Student by ID. */
     @Override
     @Transactional
     public void delete(Integer id) {
@@ -65,7 +70,7 @@ public class StudentDaoImplement implements StudentDao {
         }
     }
 
-    /** Deletes all Student records from the database and returns the count of deleted rows. */
+    /** Deletes all Students and returns the number of deleted rows. */
     @Override
     @Transactional
     public int deleteAll() {

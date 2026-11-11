@@ -1,7 +1,6 @@
 package com.spring.hibernate_demo;
 
 import com.spring.hibernate_demo.dao.AppDao;
-import com.spring.hibernate_demo.dao.AppDaoImplement;
 import com.spring.hibernate_demo.dao.StudentDao;
 import com.spring.hibernate_demo.dao.StudentDaoImplement;
 import com.spring.hibernate_demo.entity.Course;
@@ -17,7 +16,7 @@ import org.springframework.context.annotation.Bean;
 
 /**
  * Main class for the Spring Boot Hibernate application.
- * Includes runner methods for demonstrating CRUD operations and entity mappings.
+ * Demonstrates CRUD operations and entity mappings.
  */
 @SpringBootApplication
 public class HibernateDemoApplication {
@@ -30,7 +29,7 @@ public class HibernateDemoApplication {
      * @param studentDaoImplement Student DAO implementation
      * @param appDaoImplement Application DAO implementation
      */
-    public HibernateDemoApplication(StudentDaoImplement studentDaoImplement, AppDaoImplement appDaoImplement) {
+    public HibernateDemoApplication(StudentDaoImplement studentDaoImplement) {
         this.studentDaoImplement = studentDaoImplement;
     }
 
@@ -47,15 +46,16 @@ public class HibernateDemoApplication {
      * Runner bean to execute database queries sequentially on boot.
      */
     @Bean
-    public CommandLineRunner commandLineRunner(StudentDao studentDao, AppDao app) {
+    public CommandLineRunner commandLineRunner(StudentDao student, 
+                                                AppDao app) {
         return runner -> {
-            // createStudent(studentDao);
-            // readStudent(studentDao);
-            // queryStudents(studentDao);
-            // queryStudentsLastName(studentDao);
-            // updateStudent(studentDao);
-            // deleteStudent(studentDao);
-            // deleteAllStudents(studentDao);
+            // createStudent(student);
+            // readStudent(student);
+            // queryStudents(student);
+            // queryStudentsLastName(student);
+            // updateStudent(student);
+            // deleteStudent(student);
+            // deleteAllStudents(student);
             // createInstructor(app);
             // findInstructor(app);
             // deleteInstructor(app);
@@ -70,6 +70,7 @@ public class HibernateDemoApplication {
             // deleteCourseOnly(app);
             // createCourseAndReview(app);
             // findCourseAndReviews(app);
+            // deleteCourseAndReviews(app);
             // createCourseAndStudents(app);
             // findCourseAndStudents(app);
             // findStudentAndCourses(app);
@@ -82,7 +83,7 @@ public class HibernateDemoApplication {
     /** Creates and persists a new Student record. */
     public void createStudent(StudentDao studentDao) {
         System.out.println("Creating new student object...");
-        Student student = new Student("Kuya", "Joseph", "KuyaJoseph@gmail.com");
+        Student student = new Student("Kuya", "Joseph", "KJoseph@gmail.com");
 
         studentDao.save(student);
         System.out.println("Saved student. Generated id: " + student.getId());
@@ -142,7 +143,9 @@ public class HibernateDemoApplication {
     /** Creates an Instructor with InstructorDetail (OneToOne). */
     public void createInstructor(AppDao app) {
         Instructor ins = new Instructor("rai", "san", "raisan@gmail.com");
-        InstructorDetail insDetail = new InstructorDetail("PE", "watching movies");
+        InstructorDetail insDetail = new InstructorDetail
+                                            ("PE", 
+                                            "watching movies");
 
         ins.setInstructorDeets(insDetail);
 

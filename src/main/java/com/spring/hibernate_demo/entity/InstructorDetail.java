@@ -10,7 +10,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 /**
- * Entity class representing detailed information associated with an Instructor.
+ * Represents additional information about an Instructor.
  */
 @Entity
 @Table(name = "instructorDetail")
@@ -88,6 +88,8 @@ public class InstructorDetail {
     /** Returns a string representation of the instructor detail. */
     @Override
     public String toString() {
-        return "InstructorDetail [id=" + id + ", subject=" + subject + ", hobby=" + hobby + "]";
+        return "InstructorDetail [id=" + id
+                + ", subject=" + subject
+                + ", hobby=" + hobby + "]";
     }
 }
