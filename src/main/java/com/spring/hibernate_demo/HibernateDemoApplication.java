@@ -161,7 +161,8 @@ public class HibernateDemoApplication {
         Instructor ins = app.findInstructorById(id);
 
         System.out.println("Found instructor: " + ins);
-        System.out.println("Associated instructor details: " + ins.getInstructorDeets());
+        System.out.println(
+        "Associated instructor details: " + ins.getInstructorDeets());
     }
 
     /** Deletes an Instructor and cascades to details. */
